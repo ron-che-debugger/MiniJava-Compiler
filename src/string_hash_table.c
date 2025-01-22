@@ -4,24 +4,24 @@
  * constants during lexical analysis in a compiler.            *
  *                                                             *
  * Key Components:                                             *
- *   1. **Hash Table (`hash_tbl`)**:                          *
+ *   1. **Hash Table (`hash_tbl`)**:                           *
  *      - Stores metadata about tokens using the PJW hash.     *
  *      - Handles collisions using separate chaining.          *
  *                                                             *
- *   2. **String Table (`strg_tbl`)**:                        *
+ *   2. **String Table (`strg_tbl`)**:                         *
  *      - Stores the actual text of identifiers and strings.   *
  *      - Uses a continuous character array with separators.   *
  *                                                             *
- *   3. **Hash Function (`hashpjw`)**:                       *
+ *   3. **Hash Function (`hashpjw`)**:                         *
  *      - Computes hash values using the Peter J. Weinberger   *
  *        (PJW) hashing algorithm for even distribution.       *
  *                                                             *
- *   4. **Insertion (`install_id`)**:                        *
+ *   4. **Insertion (`install_id`)**:                          *
  *      - Inserts tokens into the hash table and string table. *
  *      - Prevents duplicates and manages escape sequences.    *
  *                                                             *
  * Example: Hashing and Handling Collision for Strings "cat"   *
- *          and "bat" (TBL_LEN = 101)                         *
+ *          and "bat" (TBL_LEN = 101)                          *
  * ----------------------------------------------------------- *
  * Step-by-step demonstration of hash collision handling:      *
  *                                                             *
@@ -32,19 +32,19 @@
  *      id = IDnum                                             *
  *      len = 3                                                *
  *      index = 0 (start in `strg_tbl`)                        *
- *  - Store `"cat"` in `strg_tbl`:                            *
- *      strg_tbl = ['c', 'a', 't', 0, ...]                    *
+ *  - Store `"cat"` in `strg_tbl`:                             *
+ *      strg_tbl = ['c', 'a', 't', 0, ...]                     *
  *                                                             *
  *  Inserting "bat" (Collision Occurs):                        *
  *  -----------------------------------                        *
  *  - Compute hash: `"bat"` → hashpjw("bat") → index `5`       *
  *  - `hash_tbl[5]` already contains `"cat"` → **collision**   *
- *  - Create a new `hash_ele` entry for `"bat"`:              *
+ *  - Create a new `hash_ele` entry for `"bat"`:               *
  *      id = IDnum                                             *
  *      len = 3                                                *
  *      index = 4 (next available in `strg_tbl`)               *
- *  - Store `"bat"` in `strg_tbl`:                            *
- *      strg_tbl = ['c', 'a', 't', 0, 'b', 'a', 't', 0, ...]  *
+ *  - Store `"bat"` in `strg_tbl`:                             *
+ *      strg_tbl = ['c', 'a', 't', 0, 'b', 'a', 't', 0, ...]   *
  *  - **Chaining**: Link `"bat"` to the existing `"cat"` node: *
  *                                                             *
  *      hash_tbl[5] → [cat | index: 0] → [bat | index: 4] → NULL *
