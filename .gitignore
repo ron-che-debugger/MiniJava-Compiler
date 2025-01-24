@@ -1,0 +1,4 @@
+.vscode/
+.DS_Store
+.clang-format
+compiler_spec.pdf
