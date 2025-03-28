@@ -62,7 +62,7 @@ MiniJava source files can be placed in the `test/` directory. To compile a file 
 make test
 ```
 This command processes the selected MiniJava source, generating several outputs: the MIPS assembly code is saved as `codegen.s`, the runtime output (as executed by the SPIM simulator) is stored in `codegen.out`, and the Abstract Syntax Tree (AST) along with the symbol table are recorded in `ast_symbol_table.txt`.  
-For instance, consider a MiniJava program `src1`:
+For instance, consider a MiniJava program [`src1`](./test/src1):
 ```
 /* Ex1: Assignment statement */
 program ex1;
