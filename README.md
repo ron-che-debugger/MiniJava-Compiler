@@ -49,20 +49,20 @@ minijava-compiler/
 ```
 
 ## Usage
-### Building the Executables
-To build the `codegen` executable, use the following command:
+### Installation and Build
+To compile the project and generate the `codegen` executable, run:
 ```bash
 make
 ```
+This command compiles all project modules and produces a production-ready binary.
 
-### Running the Compiler
-Once built, you can run the compiler using the following command:
+### Compiling MiniJava Programs
+MiniJava source files can be placed in the `test/` directory. To compile a file and generate MIPS assembly output, run:
 ```bash
 make test
 ```
-This command will process the provided MiniJava source file and generates multiple outputs. The MIPS assembly code converted from the MiniJava source is saved in `codegen.s`. The execution output of the generated MIPS assembly code, produced by running it in the SPIM simulator, is saved in `codegen.out`. Additionally, the Abstract Syntax Tree (AST) and symbol table generated during the compilation process are saved in `ast_symbol_table.txt`.
-
-For instance, consider a script `src1` written in MiniJava:
+This command processes the selected MiniJava source, generating several outputs: the MIPS assembly code is saved as `codegen.s`, the runtime output (as executed by the SPIM simulator) is stored in `codegen.out`, and the Abstract Syntax Tree (AST) along with the symbol table are recorded in `ast_symbol_table.txt`.  
+For instance, consider a MiniJava program `src1`:
 ```
 /* Ex1: Assignment statement */
 program ex1;
@@ -84,12 +84,12 @@ class c1
 }
 ```
 
-Run the compiler and save the outputs using the command:
+Run the MiniJava compiler and save the outputs using the command:
 ```bash
 ./codegen < ./test/src1 > ast_symbol_table_1.txt
 ```
 
-The symbol table and AST genrated from this program will be saved in `ast_symbol_table_1.txt`:
+The symbol table and AST genrated from this program will be saved in `ast_symbol_table_1.txt`. This file includes two parts. The first section is the symbol table, which lists all identifiers discovered during compilation along with important attributes such as scope level, kind (e.g., class, variable, procedure), and type information. For instance, you can see how system-level definitions like `system` and `println` are flagged as predefined, while user-defined identifiers such as `c1`, `x`, and `main` are properly recorded with their corresponding scope levels. Following the symbol table, the file displays the AST printout, which represents the hierarchical structure of the MiniJava source code. This tree view details how each component (like class definitions, method calls, control structures, etc.) is organized and linked, serving as a valuable reference for debugging and understanding the compiler's internal representation.
 ```
 ********************************Symbol Table************************************
 
@@ -166,7 +166,7 @@ R-[ProgramOp]
     +-[DUMMYnode]
 ```
 
-The MIPS instructions converted from this MiniJava program, saved in `code.s`:
+The MIPS instructions converted from this MiniJava program, saved in `code.s`. It begins with a data segment that defines static data such as strings and memory allocation areas, followed by a text segment where the executable code resides. The assembly code includes directives for class initialization, variable setup, and control flow structures such as conditionals. Each operation from the source code—whether it’s a variable assignment, a conditional branch, or a method call—is translated into a sequence of MIPS instructions. 
 ```
 .data
 Enter: .asciiz "
@@ -246,8 +246,5 @@ main:
 	syscall
 ```
 
-### Clearing the Executables
-To delete the built executables and generated results, use the following command:
-```bash
-make clean
-```
+## License
+This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
