@@ -1,24 +1,25 @@
 # MiniJava Compiler
 
 ## Table of Contents
-- [Introduction](#introduction)
+- [Overview](#overview)
+- [Compiler Components](#compiler-components)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 
-## Introduction
+## Overview
 The MiniJava Compiler is a lightweight toolchain, comprised distinct modules-lexer, parser, semantic analyzer, and code generator, designed to compile a subset of MiniJava code into assembly code.
 
-### Key Features
-#### Lexer: Tokenizing MiniJava Code
+## Compiler Components
+### Lexer: Tokenizing MiniJava Code
 The lexer converts the input MiniJava source code into a stream of tokens, each representing a fundamental syntactic unit such as keywords, identifiers, literals, and operators.
 
-#### Grammar: Parsing with LL(1) Approach
+### Grammar: Parsing with LL(1) Approach
 The parser processes the token stream, constructing an Abstract Syntax Tree (AST) that represents the program's structure.
 
-#### Semantic Analyzer: Enforcing Language Rules
+### Semantic Analyzer: Enforcing Language Rules
 The semantic analyzer traverses the AST to ensure the program adheres to semantic rules such as type compatibility, scoping, and declaration usage.
 
-#### Code Generator: Efficient Assembly Translation
+### Code Generator: Efficient Assembly Translation
 The code generator translates the Abstract Syntax Tree (AST) into assembly instructions for execution, handling register allocation, control flow transition, optimized output, and runtime integration.
 
 ## Project Structure
